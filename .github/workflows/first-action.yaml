@@ -29,11 +29,11 @@ jobs:
         uses: kciter/aws-ecr-action@v4
         with:
           # The AWS access key id
-          access_key_id: ${{AWS_ACCESS_KEY_ID}}
+          access_key_id: ${{secrets.AWS_ACCESS_KEY_ID}}
           # The AWS secret access key
-          secret_access_key: ${{AWS_SECRET_ACCESS_KEY}}
+          secret_access_key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
           # AWS Account ID
-          account_id: ${{}}
+          account_id: ${{secrets.AWS_ACCOUNT_ID}}
           # Name of your ECR repository
           repo: demo
           # The AWS region
