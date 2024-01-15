@@ -27,6 +27,7 @@ jobs:
       uses: aws-actions/amazon-ecr-login@v1
       with:
         registry_ids: ${{ secrets.AWS_ACCOUNT_ID }}
+        region: us-east-2
 
     - name: Move cache
       run: |
