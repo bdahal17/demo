@@ -3,8 +3,11 @@ name: myworkflow
 on: push
 
 jobs:
-  build-v2:
+  build-and-push:
     runs-on: ubuntu-latest
     steps:
-      - name: texs
+      - name: repo checkout
         uses: actions/checkout@v2
+
+      - name: Build and push Docker images
+        uses: docker/build-push-action@v5.1.0
