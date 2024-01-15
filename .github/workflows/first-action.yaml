@@ -9,12 +9,23 @@ jobs:
       - name: repo checkout
         uses: actions/checkout@v2
 
-      - name: AWS ECR
-        uses: kciter/aws-ecr-action@v4
+      - name: Amazon ECR "Login" Action for GitHub Actions
+        # You may pin to the exact commit or the version.
+        # uses: aws-actions/amazon-ecr-login@062b18b96a7aff071d4dc91bc00c4c1a7945b076
+        uses: aws-actions/amazon-ecr-login@v2
         with:
-          access_key_id: ${{secrets.AWS_ACCESS_KEY_ID}}
-          secret_access_key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
-          account_id: ${{secrets.AWS_ACCOUNT_ID}}
-          repo: demo
-          region: us-east-2
+          # Mask the docker password to prevent it being printed to action logs if debug logging is enabled. NOTE: This will prevent the Docker password output from being shared between separate jobs. Options: ['true', 'false']
+          mask-password: true # optional, default is true
+          # Which ECR registry type to log into. Options: [private, public]
+          registry-type: public # optional, default is private
+          
+
+      # - name: AWS ECR
+      #   uses: kciter/aws-ecr-action@v4
+      #   with:
+      #     access_key_id: ${{secrets.AWS_ACCESS_KEY_ID}}
+      #     secret_access_key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+      #     account_id: ${{secrets.AWS_ACCOUNT_ID}}
+      #     repo: demo
+      #     region: us-east-2
           
