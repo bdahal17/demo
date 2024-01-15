@@ -17,5 +17,4 @@ jobs:
           account_id: ${{secrets.AWS_ACCOUNT_ID}}
           repo: demo
           region: us-east-2
-          path: ../../
           
