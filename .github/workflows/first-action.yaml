@@ -14,7 +14,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          # aws-region: us-east-2 # Commented out for ECR Public
+          aws-region: us-east-2
 
       - name: Login to Amazon ECR Public
         id: login-ecr-public
@@ -26,7 +26,7 @@ jobs:
         env:
           REGISTRY: ${{ steps.login-ecr-public.outputs.registry }}
           # Update REGISTRY_ALIAS to the correct format if needed
-          REGISTRY_ALIAS: public.ecr.aws/your-alias # Replace 'your-alias' with your actual ECR Public alias
+          REGISTRY_ALIAS: public.ecr.aws/e7y7s7r3/demo # Replace 'your-alias' with your actual ECR Public alias
           REPOSITORY: demo
           IMAGE_TAG: ${{ github.sha }}
         run: |
