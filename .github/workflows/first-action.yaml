@@ -31,9 +31,9 @@ jobs:
           # The AWS access key id
           access_key_id: ${{AWS_ACCESS_KEY_ID}}
           # The AWS secret access key
-          secret_access_key: ${{AWS_ACCESS_KEY_ID}}
+          secret_access_key: ${{AWS_SECRET_ACCESS_KEY}}
           # AWS Account ID
-          account_id: 
+          account_id: ${{}}
           # Name of your ECR repository
           repo: demo
           # The AWS region
