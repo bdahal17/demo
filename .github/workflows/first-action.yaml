@@ -10,11 +10,11 @@ jobs:
         uses: actions/checkout@v3
         
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4 # More information on this action can be found below in the 'AWS Credentials' section
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region:  us-east-2 # e.g., us-west-2
+          # aws-region: us-east-2 # Commented out for ECR Public
 
       - name: Login to Amazon ECR Public
         id: login-ecr-public
@@ -25,12 +25,13 @@ jobs:
       - name: Build, tag, and push docker image to Amazon ECR Public
         env:
           REGISTRY: ${{ steps.login-ecr-public.outputs.registry }}
-          REGISTRY_ALIAS: my-ecr-public-registry-alias
+          # Update REGISTRY_ALIAS to the correct format if needed
+          REGISTRY_ALIAS: public.ecr.aws/your-alias # Replace 'your-alias' with your actual ECR Public alias
           REPOSITORY: demo
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -t $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG .
-          docker push $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG
+          docker build -t $REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG .
+          docker push $REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG
 
       # - name: AWS ECR
       #   uses: kciter/aws-ecr-action@v4
