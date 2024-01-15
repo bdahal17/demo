@@ -11,7 +11,7 @@ jobs:
 
       - name: authenticate
         run: |
-          echo "hello world"
+          aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/e7y7s7r3
           
       # - name: Configure AWS credentials
       #   uses: aws-actions/configure-aws-credentials@v4
